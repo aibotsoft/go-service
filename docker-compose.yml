@@ -1,0 +1,26 @@
+services:
+  postgresql:
+    image: "postgres:13"
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: dinotest
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: postgres
+
+  mysql:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  mysql_data:
